@@ -2,9 +2,6 @@
   "manifest_version": 3,
   "name": "Ninja YTG",
   "description": "The feature everyone want on YTG",
-  "background": {
-    "service_worker": "background.bundle.js"
-  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
