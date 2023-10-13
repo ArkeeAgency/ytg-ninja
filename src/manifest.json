@@ -9,12 +9,15 @@
   "icons": {
     "128": "icon-128.png"
   },
+  "permissions": [
+    "http://yourtext.guru/*",
+    "https://yourtext.guru/*"
+  ],
   "content_scripts": [
     {
       "matches": [
         "http://yourtext.guru/*",
-        "https://yourtext.guru/*",
-        "<all_urls>"
+        "https://yourtext.guru/*"
       ],
       "js": [
         "contentScript.bundle.js"
