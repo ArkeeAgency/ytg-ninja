@@ -26,16 +26,26 @@ const Content = () => {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         },
         body: `text=${encodeURIComponent(content)}&save=false`,
-      }),
-    { refreshInterval: 1000 }
+      })
   );
 
+  const maxHeight =
+    37.5 +
+    ((data && data.result && Object.keys(data.result.corpus).length) ?? 0) * 38;
+
+  const [height, setHeight] = React.useState(37.5 + 5 * 38);
   const textContent = removeHTMLTags(content).toLowerCase();
 
-  console.log(
-    'count',
-    countOccurrences("le déroulement d'une séance d'épilation laser", 'séance')
-  );
+  const handleSeeMore = (e) => {
+    if (height === maxHeight) {
+      setHeight(37.5 + 5 * 38);
+    } else {
+      e.preventDefault();
+      setHeight((prev) =>
+        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38
+      );
+    }
+  };
 
   return (
     <div className="card mb-2 mt-4">
@@ -76,15 +86,29 @@ const Content = () => {
         </div>
 
         <div className="separator-light mb-3"></div>
-        <div className="mb-n2 scroll-out">
-          <div>
+        <div
+          className="mb-n2 scroll-out"
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <div style={{ height: `${height}px`, overflowY: 'hidden' }}>
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Mot clé</th>
-                  <th>Occurrences</th>
-                  <th>Ajouts</th>
-                  <th>Total</th>
+                  <th>Keyword</th>
+                  <th style={{ textAlign: 'center' }}>Occurrences</th>
+                  <th style={{ textAlign: 'center' }}>
+                    Added{' '}
+                    <span
+                      style={{
+                        fontSize: '0.5em',
+                        verticalAlign: 'super',
+                        marginLeft: '-4px',
+                      }}
+                    >
+                      beta
+                    </span>
+                  </th>
+                  <th style={{ textAlign: 'center' }}>Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -95,24 +119,55 @@ const Content = () => {
                     .sort(([, a], [, b]) => b.score - a.score)
                     .map(([key, value], i) => {
                       const occurrences = countOccurrences(textContent, key);
-                      const added = 0;
+                      let added =
+                        (((value.gap[1] + value.gap[2]) / 2) * occurrences) /
+                          value.textData -
+                        occurrences;
+                      // il faut arrondir à l'entier
+                      added = Math.round(added);
+                      added = isNaN(added) ? 0 : isFinite(added) ? added : 0;
                       const total = occurrences + added;
                       return (
                         <tr key={i}>
                           <td>{key}</td>
-                          <td>{occurrences}</td>
-                          <td>{added}</td>
-                          <td>{total}</td>
+                          <td style={{ textAlign: 'center' }}>{occurrences}</td>
+                          <td style={{ textAlign: 'center' }}>
+                            {added === 0 ? '-' : added}
+                          </td>
+                          <td style={{ textAlign: 'center' }}>{total}</td>
                         </tr>
                       );
                     })}
               </tbody>
             </table>
           </div>
-          <a href="#table-kg">
-            <i className="fa fa-plus"></i> voir plus
-          </a>
-          <div></div>
+          <span
+            style={{
+              marginTop: '8px',
+            }}
+          >
+            <a href="#ytg-ninja" onClick={handleSeeMore}>
+              <i
+                className={height === maxHeight ? 'fa fa-minus' : 'fa fa-plus'}
+              ></i>{' '}
+              see {height === maxHeight ? 'less' : 'more'}
+            </a>
+            {height !== maxHeight && (
+              <>
+                {' ('}
+                <a
+                  href="#ytg-ninja"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setHeight(maxHeight);
+                  }}
+                >
+                  all
+                </a>
+                {')'}
+              </>
+            )}
+          </span>
         </div>
       </div>
     </div>
