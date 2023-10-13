@@ -8,12 +8,14 @@ import countOccurrences from './utils/countOccurrences';
 
 const Content = () => {
   const [copiedValue, copy] = useCopyToClipboard();
+
   const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
   const csrfToken = csrfTokenElement.getAttribute('content');
 
   const contentElement = document.querySelector('textarea#contenu');
   const content = contentElement.value;
 
+  // TODO: Add error handling
   const { data, error, isLoading } = useSWR(
     `https://yourtext.guru${window.location.pathname}/textposition`,
     (url, options) =>
@@ -47,6 +49,36 @@ const Content = () => {
     }
   };
 
+  const handleCopySub = (e) => {
+    e.preventDefault();
+    const sub = Object.entries(data.result.corpus)
+      .sort(([, a], [, b]) => b.score - a.score)
+      .filter(([, value]) => value.textData < value.gap[1])
+      .map(([key], i) => key)
+      .join(', ');
+    copy(sub);
+  };
+
+  const handleCopyMiss = (e) => {
+    e.preventDefault();
+    const miss = Object.entries(data.result.corpus)
+      .sort(([, a], [, b]) => b.score - a.score)
+      .filter(([, value]) => value.textData === 0)
+      .map(([key], i) => key)
+      .join(', ');
+    copy(miss);
+  };
+
+  const handleCopyOver = (e) => {
+    e.preventDefault();
+    const over = Object.entries(data.result.corpus)
+      .sort(([, a], [, b]) => b.score - a.score)
+      .filter(([, value]) => value.textData > value.gap[3])
+      .map(([key], i) => key)
+      .join(', ');
+    copy(over);
+  };
+
   return (
     <div className="card mb-2 mt-4">
       <div className="card-body d-flex flex-column h-100 w-100 position-relative">
@@ -63,7 +95,7 @@ const Content = () => {
                   <div className="name">
                     Ninja (
                     <a
-                      href={'#'}
+                      href={'#ytg-ninja'}
                       onClick={(e) => {
                         e.preventDefault();
                         copy(
@@ -76,9 +108,15 @@ const Content = () => {
                     >
                       copy
                     </a>
-                    ){!!copiedValue && ' ✅'}
+                    )
+                    {copiedValue ===
+                      (data &&
+                        data.result &&
+                        Object.entries(data.result.corpus)
+                          .sort(([, a], [, b]) => b.score - a.score)
+                          .map(([key], i) => key)
+                          .join(', ')) && ' ✅'}
                   </div>
-                  <div className="text-small text-muted last"></div>
                 </div>
               </div>
             </div>
@@ -186,6 +224,62 @@ const Content = () => {
                 </>
               )}
             </span>
+
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                marginTop: '8px',
+              }}
+            >
+              <button
+                className={`btn btn-${
+                  copiedValue ===
+                  Object.entries(data.result.corpus)
+                    .sort(([, a], [, b]) => b.score - a.score)
+                    .filter(([, value]) => value.textData < value.gap[1])
+                    .map(([key], i) => key)
+                    .join(', ')
+                    ? 'success'
+                    : 'primary'
+                }`}
+                onClick={handleCopySub}
+              >
+                copy sub
+              </button>
+              <button
+                className={`btn btn-${
+                  copiedValue ===
+                  Object.entries(data.result.corpus)
+                    .sort(([, a], [, b]) => b.score - a.score)
+                    .filter(([, value]) => value.textData === 0)
+                    .map(([key], i) => key)
+                    .join(', ')
+                    ? 'success'
+                    : 'primary'
+                }`}
+                onClick={handleCopyMiss}
+              >
+                copy miss
+              </button>
+              <button
+                className={`btn btn-${
+                  copiedValue ===
+                  Object.entries(data.result.corpus)
+                    .sort(([, a], [, b]) => b.score - a.score)
+                    .filter(([, value]) => value.textData > value.gap[3])
+                    .map(([key], i) => key)
+                    .join(', ')
+                    ? 'success'
+                    : 'primary'
+                }`}
+                onClick={handleCopyOver}
+              >
+                copy over
+              </button>
+            </div>
           </div>
         )}
       </div>
