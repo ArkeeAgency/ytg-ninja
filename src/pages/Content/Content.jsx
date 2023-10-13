@@ -86,89 +86,108 @@ const Content = () => {
         </div>
 
         <div className="separator-light mb-3"></div>
-        <div
-          className="mb-n2 scroll-out"
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          <div style={{ height: `${height}px`, overflowY: 'hidden' }}>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Keyword</th>
-                  <th style={{ textAlign: 'center' }}>Occurrences</th>
-                  <th style={{ textAlign: 'center' }}>
-                    Added{' '}
-                    <span
-                      style={{
-                        fontSize: '0.5em',
-                        verticalAlign: 'super',
-                        marginLeft: '-4px',
-                      }}
-                    >
-                      beta
-                    </span>
-                  </th>
-                  <th style={{ textAlign: 'center' }}>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data &&
-                  data.result &&
-                  Object.keys(data.result.corpus).length > 0 &&
-                  Object.entries(data.result.corpus)
-                    .sort(([, a], [, b]) => b.score - a.score)
-                    .map(([key, value], i) => {
-                      const occurrences = countOccurrences(textContent, key);
-                      let added =
-                        (((value.gap[1] + value.gap[2]) / 2) * occurrences) /
-                          value.textData -
-                        occurrences;
-                      // il faut arrondir à l'entier
-                      added = Math.round(added);
-                      added = isNaN(added) ? 0 : isFinite(added) ? added : 0;
-                      const total = occurrences + added;
-                      return (
-                        <tr key={i}>
-                          <td>{key}</td>
-                          <td style={{ textAlign: 'center' }}>{occurrences}</td>
-                          <td style={{ textAlign: 'center' }}>
-                            {added === 0 ? '-' : added}
-                          </td>
-                          <td style={{ textAlign: 'center' }}>{total}</td>
-                        </tr>
-                      );
-                    })}
-              </tbody>
-            </table>
-          </div>
-          <span
+        {isLoading ? (
+          <div
             style={{
-              marginTop: '8px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height,
             }}
           >
-            <a href="#ytg-ninja" onClick={handleSeeMore}>
-              <i
-                className={height === maxHeight ? 'fa fa-minus' : 'fa fa-plus'}
-              ></i>{' '}
-              see {height === maxHeight ? 'less' : 'more'}
-            </a>
-            {height !== maxHeight && (
-              <>
-                {' ('}
-                <a
-                  href="#ytg-ninja"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setHeight(maxHeight);
-                  }}
-                >
-                  all
-                </a>
-                {')'}
-              </>
-            )}
-          </span>
-        </div>
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="mb-n2 scroll-out"
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            <div style={{ height: `${height}px`, overflowY: 'hidden' }}>
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Keyword</th>
+                    <th style={{ textAlign: 'center' }}>Occurrences</th>
+                    <th style={{ textAlign: 'center' }}>
+                      Added{' '}
+                      <span
+                        style={{
+                          fontSize: '0.5em',
+                          verticalAlign: 'super',
+                          marginLeft: '-4px',
+                        }}
+                      >
+                        beta
+                      </span>
+                    </th>
+                    <th style={{ textAlign: 'center' }}>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data &&
+                    data.result &&
+                    Object.keys(data.result.corpus).length > 0 &&
+                    Object.entries(data.result.corpus)
+                      .sort(([, a], [, b]) => b.score - a.score)
+                      .map(([key, value], i) => {
+                        const occurrences = countOccurrences(textContent, key);
+                        let added =
+                          (((value.gap[1] + value.gap[2]) / 2) * occurrences) /
+                            value.textData -
+                          occurrences;
+                        // il faut arrondir à l'entier
+                        added = Math.round(added);
+                        added = isNaN(added) ? 0 : isFinite(added) ? added : 0;
+                        const total = occurrences + added;
+                        return (
+                          <tr key={i}>
+                            <td>{key}</td>
+                            <td style={{ textAlign: 'center' }}>
+                              {occurrences}
+                            </td>
+                            <td style={{ textAlign: 'center' }}>
+                              {added === 0 ? '-' : added}
+                            </td>
+                            <td style={{ textAlign: 'center' }}>{total}</td>
+                          </tr>
+                        );
+                      })}
+                </tbody>
+              </table>
+            </div>
+            <span
+              style={{
+                marginTop: '8px',
+              }}
+            >
+              <a href="#ytg-ninja" onClick={handleSeeMore}>
+                <i
+                  className={
+                    height === maxHeight ? 'fa fa-minus' : 'fa fa-plus'
+                  }
+                ></i>{' '}
+                see {height === maxHeight ? 'less' : 'more'}
+              </a>
+              {height !== maxHeight && (
+                <>
+                  {' ('}
+                  <a
+                    href="#ytg-ninja"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setHeight(maxHeight);
+                    }}
+                  >
+                    all
+                  </a>
+                  {')'}
+                </>
+              )}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
