@@ -1,6 +1,6 @@
-function countOccurrences(text, key) {
+function countOccurrences(text: string, key: string) {
   // Escape special characters in the key and use word boundaries with consideration for apostrophes
-  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(`(?:\\b|\\s|['])${escapedKey}(?:\\b|\\s|['])`, "gi");
   const matches = text.match(regex);
 
