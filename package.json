@@ -10,7 +10,8 @@
   "scripts": {
     "build": "node utils/build.js",
     "start": "node utils/webserver.js",
-    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -33,7 +34,8 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
-    "eslint": "^8.31.0",
+    "eslint": "^8.54.0",
+    "eslint-config-antoine": "^1.0.13",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.27.4",
@@ -44,7 +46,7 @@
     "fs-extra": "^11.1.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "prettier": "^2.8.3",
+    "prettier": "^3.1.0",
     "react-refresh": "^0.14.0",
     "react-refresh-typescript": "^2.0.7",
     "sass": "^1.57.1",
