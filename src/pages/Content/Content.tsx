@@ -2,9 +2,11 @@ import React from "react";
 import useSWR from "swr";
 import { useCopyToClipboard } from "usehooks-ts";
 
+import calculateStatistics from "./utils/calculateStatistics";
 import countOccurrences from "./utils/countOccurrences";
 import fetcher from "./utils/fetcher";
 import removeHTMLTags from "./utils/removeHTMLTags";
+import tableToObj from "./utils/tableToObj";
 
 type Data = {
   DSEO: number;
@@ -46,6 +48,15 @@ const Content = () => {
   >("textarea#contenu");
   const content = contentElement?.value as string;
 
+  const serpDataTable = document.querySelector<HTMLTableElement>(
+    "#tab-compare table.table.table-striped"
+  );
+
+  // Log the array of objects
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const serpData = tableToObj(serpDataTable!);
+  const statistics = calculateStatistics(serpData, "Mots");
+
   // TODO: Add error handling
   const { data, isLoading } = useSWR<Data, any, any>(
     `https://yourtext.guru${window.location.pathname}/textposition`,
@@ -59,7 +70,7 @@ const Content = () => {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         body: `text=${encodeURIComponent(content)}&save=false`,
-      }),
+      })
   );
 
   const maxHeight =
@@ -75,7 +86,7 @@ const Content = () => {
     } else {
       e.preventDefault();
       setHeight((prev) =>
-        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38,
+        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38
       );
     }
   };
@@ -148,11 +159,11 @@ const Content = () => {
                           Object.entries(data!.result.corpus)
                             .sort(([, a], [, b]) => b.score - a.score)
                             .map(([key], _i) => key)
-                            .join(", "),
+                            .join(", ")
                         );
                       }}
                     >
-                      {"copy"}
+                      {"copy all"}
                     </a>
                     {")"}
                     {copiedValue ===
@@ -211,18 +222,7 @@ const Content = () => {
                   <tr>
                     <th>{"Keyword"}</th>
                     <th style={{ textAlign: "center" }}>{"Occurrences"}</th>
-                    <th style={{ textAlign: "center" }}>
-                      {"Added"}{" "}
-                      <span
-                        style={{
-                          fontSize: "0.5em",
-                          verticalAlign: "super",
-                          marginLeft: "-4px",
-                        }}
-                      >
-                        {"beta"}
-                      </span>
-                    </th>
+                    <th style={{ textAlign: "center" }}>{"Added"} </th>
                     <th style={{ textAlign: "center" }}>{"Total"}</th>
                   </tr>
                 </thead>
@@ -349,6 +349,26 @@ const Content = () => {
             </div>
           </div>
         )}
+
+        <div className={"container mt-5"}>
+          <div className={"row justify-content-center"}>
+            <div className={"text-center"}>
+              <div className={"mb-2"}>{"SERP Competitors Statistics"}</div>
+              <div className={"separator-light mb-3"} />
+
+              <div className={"row"}>
+                <div className={"col-md-6"}>
+                  <h6>{"Median:"}</h6>
+                  <p className={"lead"}>{statistics.median}</p>
+                </div>
+                <div className={"col-md-6"}>
+                  <h6>{"Average:"}</h6>
+                  <p className={"lead"}>{statistics.average}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
