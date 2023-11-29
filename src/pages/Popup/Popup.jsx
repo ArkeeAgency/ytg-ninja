@@ -10,7 +10,7 @@ const Popup = () => {
         <img src={logo} className={"App-logo"} alt={"logo"} />
         <a
           className={"App-link"}
-          href={"https://github.com/AntoineKM/ninja-ytg"}
+          href={"https://github.com/ArkeeAgency/ninja-ytg"}
           target={"_blank"}
           rel={"noopener noreferrer"}
         >
