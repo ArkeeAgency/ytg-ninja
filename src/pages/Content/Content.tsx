@@ -47,7 +47,7 @@ const Content = () => {
   const content = contentElement?.value as string;
 
   // TODO: Add error handling
-  const { data, _error, isLoading } = useSWR<Data, any, any>(
+  const { data, isLoading } = useSWR<Data, any, any>(
     `https://yourtext.guru${window.location.pathname}/textposition`,
     (url: string, options: RequestInit) =>
       fetcher<Data>(url, {
