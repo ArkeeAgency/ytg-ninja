@@ -1,19 +1,20 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import './Popup.css';
+import React from "react";
+
+import logo from "../../assets/img/logo.svg";
+import "./Popup.css";
 
 const Popup = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={"App"}>
+      <header className={"App-header"}>
+        <img src={logo} className={"App-logo"} alt={"logo"} />
         <a
-          className="App-link"
-          href="https://github.com/AntoineKM/ninja-ytg"
-          target="_blank"
-          rel="noopener noreferrer"
+          className={"App-link"}
+          href={"https://github.com/AntoineKM/ninja-ytg"}
+          target={"_blank"}
+          rel={"noopener noreferrer"}
         >
-          Give me a star on GitHub ⭐
+          {"Give me a star on GitHub ⭐"}
         </a>
       </header>
     </div>

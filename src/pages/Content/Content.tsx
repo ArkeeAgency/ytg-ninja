@@ -59,7 +59,7 @@ const Content = () => {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         body: `text=${encodeURIComponent(content)}&save=false`,
-      })
+      }),
   );
 
   const maxHeight =
@@ -75,7 +75,7 @@ const Content = () => {
     } else {
       e.preventDefault();
       setHeight((prev) =>
-        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38
+        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38,
       );
     }
   };
@@ -148,7 +148,7 @@ const Content = () => {
                           Object.entries(data!.result.corpus)
                             .sort(([, a], [, b]) => b.score - a.score)
                             .map(([key], _i) => key)
-                            .join(", ")
+                            .join(", "),
                         );
                       }}
                     >
