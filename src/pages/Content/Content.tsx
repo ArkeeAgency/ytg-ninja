@@ -359,11 +359,11 @@ const Content = () => {
               <div className={"row"}>
                 <div className={"col-md-6"}>
                   <h6>{"Median:"}</h6>
-                  <p className={"lead"}>{statistics.median}</p>
+                  <p className={"lead"}>{Math.round(statistics.median)}</p>
                 </div>
                 <div className={"col-md-6"}>
                   <h6>{"Average:"}</h6>
-                  <p className={"lead"}>{statistics.average}</p>
+                  <p className={"lead"}>{Math.round(statistics.average)}</p>
                 </div>
               </div>
             </div>
