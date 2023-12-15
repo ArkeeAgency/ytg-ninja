@@ -122,7 +122,7 @@ const Content = () => {
   };
 
   return (
-    <div className={"card mb-2 mt-4"}>
+    <div className={"card mb-6 mt-4"}>
       <div
         className={"card-body d-flex flex-column h-100 w-100 position-relative"}
       >
