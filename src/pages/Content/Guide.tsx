@@ -49,7 +49,7 @@ const Guide = () => {
   const content = contentElement?.value as string;
 
   const serpDataTable = document.querySelector<HTMLTableElement>(
-    "#tab-compare table.table.table-striped"
+    "#tab-compare table.table.table-striped",
   );
 
   // Log the array of objects
@@ -70,7 +70,7 @@ const Guide = () => {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         body: `text=${encodeURIComponent(content)}&save=false`,
-      })
+      }),
   );
 
   const maxHeight =
@@ -86,7 +86,7 @@ const Guide = () => {
     } else {
       e.preventDefault();
       setHeight((prev) =>
-        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38
+        prev + 5 * 38 > maxHeight ? maxHeight : prev + 5 * 38,
       );
     }
   };
@@ -159,7 +159,7 @@ const Guide = () => {
                           Object.entries(data!.result.corpus)
                             .sort(([, a], [, b]) => b.score - a.score)
                             .map(([key], _i) => key)
-                            .join(", ")
+                            .join(", "),
                         );
                       }}
                     >
