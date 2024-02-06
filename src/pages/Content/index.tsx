@@ -28,7 +28,7 @@ const copy = (text: string) => {
   document.body.removeChild(textarea);
 };
 
-const handleCopyAsCSV = async () => {
+const handleCopyAsCSV = async (reverse = false) => {
   const table = document.querySelector("#list-guides");
   // exemple of selected row <div class="card card_table row-guide row_table selected">
   const rowsSelected = Array.from(
@@ -91,7 +91,9 @@ const handleCopyAsCSV = async () => {
     return [keyword, statistics.median, reco, keywords].join("	");
   });
 
-  const result = await Promise.all(resultPromises);
+  const result = await Promise.all(
+    reverse ? resultPromises.reverse() : resultPromises,
+  );
 
   const resultString = result.join("\n");
   copy(resultString);
@@ -109,6 +111,17 @@ const initGuides = () => {
   container.onclick = () => {
     handleCopyAsCSV();
   };
+
+  const containerReverse = document.createElement("a");
+  containerReverse.className = "dropdown-item link-multiple";
+  containerReverse.id = "ytg-ninja-guides-reverse";
+  containerReverse.textContent = "Copy as CSV (reverse)";
+  containerReverse.href = "#";
+  containerReverse.onclick = () => {
+    handleCopyAsCSV(true);
+  };
+
+  dropdownMenu?.prepend(containerReverse);
   dropdownMenu?.prepend(container);
 };
 
