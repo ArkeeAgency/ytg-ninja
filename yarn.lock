@@ -6303,9 +6303,9 @@ use-sync-external-store@^1.2.0:
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 usehooks-ts@^2.9.1:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.13.0.tgz#0026ac6c1518324ba7aeaca8ae7511135c21f822"
-  integrity sha512-3yZ2dwbc5BTaejBvamckAqv/q29sKFeqNCdi1z9Im4GzsTT5XbdIdbB94KEoh9xSvZy/qRoztjR14pF5voEU5Q==
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.14.0.tgz#8c38fdb9133a7278f88ff8c762695ccaec4abfb8"
+  integrity sha512-jnhrjTRJoJS7cFxz63tRYc5mzTKf/h+Ii8P0PDHymT9qDe4ZA2/gzDRmDR4WGausg5X8wMIdghwi3BBCN9JKow==
   dependencies:
     lodash.debounce "^4.0.8"
 
