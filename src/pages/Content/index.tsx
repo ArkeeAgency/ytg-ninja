@@ -43,7 +43,7 @@ const handleCopyAsCSV = async (reverse = false) => {
     const keyword = row.querySelector(".guide-title")?.textContent;
     const guideId = row
       .querySelector(".guide-displayId")
-      ?.textContent?.replace("#", "");
+      ?.id?.replace("guide-displayId-", "");
 
     const response = await fetch(`https://yourtext.guru/guide/${guideId}`);
     const data = await response.text();
@@ -59,6 +59,12 @@ const handleCopyAsCSV = async (reverse = false) => {
     const serpDataTable = dataElement.querySelector<HTMLTableElement>(
       "#tab-compare table.table.table-striped",
     );
+
+    console.log("guideId", guideId);
+    console.log("dataElement", dataElement);
+    console.log("contentElement", contentElement);
+    console.log("serpDataTable", serpDataTable);
+    console.log("content", content);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const serpData = tableToObj(serpDataTable!);
