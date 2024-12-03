@@ -9,7 +9,7 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "permissions": [
+  "host_permissions": [
     "http://yourtext.guru/*",
     "https://yourtext.guru/*"
   ],
