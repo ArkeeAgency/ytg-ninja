@@ -32,7 +32,7 @@ const handleCopyAsCSV = async (reverse = false) => {
   const table = document.querySelector("#list-guides");
   // exemple of selected row <div class="card card_table row-guide row_table selected">
   const rowsSelected = Array.from(
-    table?.querySelectorAll("div.card.card_table.row-guide.selected") || [],
+    table?.querySelectorAll("div.card.card_table.row-guide.selected") || []
   );
 
   // eslint-disable-next-line quotes
@@ -57,14 +57,8 @@ const handleCopyAsCSV = async (reverse = false) => {
     const content = contentElement?.value as string;
 
     const serpDataTable = dataElement.querySelector<HTMLTableElement>(
-      "#tab-compare table.table.table-striped",
+      "#tab-compare table.table.table-striped"
     );
-
-    console.log("guideId", guideId);
-    console.log("dataElement", dataElement);
-    console.log("contentElement", contentElement);
-    console.log("serpDataTable", serpDataTable);
-    console.log("content", content);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const serpData = tableToObj(serpDataTable!);
@@ -72,7 +66,6 @@ const handleCopyAsCSV = async (reverse = false) => {
 
     const matchMinValue = data.match(/var\s+min\s*=\s*(\d+);/);
     const reco = matchMinValue ? matchMinValue[1] : undefined;
-    console.log("reco", reco);
 
     const textpositionResponse = await fetch(
       `https://yourtext.guru/guide/${guideId}/textposition`,
@@ -84,7 +77,7 @@ const handleCopyAsCSV = async (reverse = false) => {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         body: `text=${encodeURIComponent(content)}&save=false`,
-      },
+      }
     );
 
     const textpositionData = await textpositionResponse.json();
@@ -98,7 +91,7 @@ const handleCopyAsCSV = async (reverse = false) => {
   });
 
   const result = await Promise.all(
-    reverse ? resultPromises.reverse() : resultPromises,
+    reverse ? resultPromises.reverse() : resultPromises
   );
 
   const resultString = result.join("\n");
@@ -107,7 +100,7 @@ const handleCopyAsCSV = async (reverse = false) => {
 
 const initGuides = () => {
   const dropdownMenu = document.querySelector(
-    "div.dropdown-menu-sm:nth-child(3)",
+    "div.dropdown-menu-sm:nth-child(3)"
   );
   const container = document.createElement("a");
   container.className = "dropdown-item link-multiple";
