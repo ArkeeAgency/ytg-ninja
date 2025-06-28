@@ -1529,10 +1529,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@^0.0.327":
-  version "0.0.327"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.327.tgz#1bdad18fd6194c5bd3c757b2c6abc682c453e362"
-  integrity sha512-dheyXiqtBdZAqhq4ZXUcsgcrvM9sktZfiKK5/QQDbVSpYfuK/N2CS1PVFWg1N6aAd+KJdSVrotw6mFQwg8DyxQ==
+"@types/chrome@^0.0.328":
+  version "0.0.328"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.328.tgz#a725c4147462a6e8ebf78acd575a9413574f9eb9"
+  integrity sha512-Mv/TQMFMpGBTqWQOQsYcAd3qDncH/Q+Dz7iJVjkwb98uLeM8xZVEYH3VR5Jh+su9IBksbumJeazakK8WqBAgFA==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
