@@ -1549,9 +1549,9 @@
     "@types/node" "*"
 
 "@types/chrome@^0.1.0":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.1.4.tgz#74a3a6c892e2c5d0a98997c4f038cb67cfbb0fa9"
-  integrity sha512-vfISO7SPppN3OKVUqWujtZ4vux3nhDqKaHYEHgfQuPARHuWJ3jjyc1s13H0ckzEc86/neTkCl1TeW72UK6jYKA==
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.1.5.tgz#c7c404d1a8cf9b56e275592cd999ab6da3b1a504"
+  integrity sha512-RxSMzuIpCyIgnQNzHnb1Z26nt56mW7GlkS2PjHFUtNP/YJjQbUhU9x8c4CocTsXtjpZOLGf6nTDIOXQHoB1GeA==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
