@@ -1583,9 +1583,9 @@
     "@types/node" "*"
 
 "@types/chrome@^0.1.0":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.1.18.tgz#7d16510ff8ef8874e074a6f529ded69e30c02e15"
-  integrity sha512-FYdpIrZmyon1lVhHsxY0xIH+7jkhy9JUzi6r+5lM7nChaq5LnWe7WLHZKzebZgPDIF2SP0XQ2qRb5t6Cp9ju+g==
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.1.19.tgz#ef4e525337641afca57af83975a8e2fd2f0ed5e8"
+  integrity sha512-nO4aVdLH3RFkstEJkrKZlbiudCSCCRMJhgLi6Cqt+xzXhFcIi+SJj9ZLe85p6Ewq24hIlEN3jRhl4N0DPL4SEg==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
