@@ -1899,9 +1899,9 @@
     "@types/node" "*"
 
 "@types/chrome@^0.3.0":
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.3.7.tgz#837d3a38ab761de909f69010b4f1dac8caf0478d"
-  integrity sha512-jWZgbHqWbTL1a5+PoyN0OJutNyejWgyZ5MdcvKo6iJE1TNRtXR3FxsC4WzNl52yZWPidfWC8NV/VUNZf+OFKcA==
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.3.8.tgz#1f218150bbb21eafe72d9af72b2dd27968649541"
+  integrity sha512-7Bg57eOKkgJUMhwYKCvbsOgp+fKcpPBhDLHx90V8xxIKylhllUfvSjnsxAtri1jWB6rMpdSku95ohJ+aRSZFEQ==
   dependencies:
     "@types/har-format" "*"
 
