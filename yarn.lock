@@ -1920,9 +1920,9 @@
     "@types/node" "*"
 
 "@types/chrome@^0.3.0":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.3.8.tgz#1f218150bbb21eafe72d9af72b2dd27968649541"
-  integrity sha512-7Bg57eOKkgJUMhwYKCvbsOgp+fKcpPBhDLHx90V8xxIKylhllUfvSjnsxAtri1jWB6rMpdSku95ohJ+aRSZFEQ==
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.3.9.tgz#8013506c664909006988fbbcd7ce22f889849c76"
+  integrity sha512-zZP3RKBKKMOid/kHMdZ2y86bufkh4MGGXa9PE/prbqZGWW4jp+2dFVf8ztUVO9QhwCz6Dy2VYQst3pgFjy2HzQ==
   dependencies:
     "@types/har-format" "*"
 
